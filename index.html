@@ -1,0 +1,2020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oakline Auto Detailing — Clean Cars. Clear Standards.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #D6BB92;
+      --primary-dark: #C4A47C;
+      --accent: #3D2B1F;
+      --accent-light: #5a3f2f;
+      --bg: #FFFFFF;
+      --bg-warm: #FAF6F0;
+      --border: #C4A47C;
+      --border-light: rgba(196,164,124,0.3);
+      --text: #3D2B1F;
+      --text-muted: rgba(61,43,31,0.55);
+      --text-light: rgba(61,43,31,0.38);
+      --white: #FFFFFF;
+      --radius-card: 10px;
+      --radius-btn: 6px;
+      --font-heading: 'Lora', Georgia, serif;
+      --font-body: 'Poppins', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    /* ── HEADER ───────────────────────────────────── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 72px;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .header-logo img {
+      height: 48px;
+      width: auto;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+    nav a {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s ease;
+    }
+    nav a:hover { color: var(--text); }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 22px;
+      background: var(--accent);
+      color: var(--primary) !important;
+      font-weight: 600 !important;
+      border-radius: var(--radius-btn);
+      transition: background 0.2s ease, transform 0.18s cubic-bezier(0.34,1.56,0.64,1) !important;
+    }
+    .nav-cta:hover { background: var(--accent-light) !important; transform: translateY(-1px); }
+    .nav-cta:active { transform: translateY(0); }
+
+    /* ── HERO ─────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 80px;
+      padding-top: 72px;
+      overflow: hidden;
+      background: var(--accent);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      max-width: 680px;
+    }
+
+    /* ── HERO SPOTLIGHT ──────────────────────────── */
+    @keyframes slFadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes slOscLeft {
+      0%, 100% { transform: translateX(0); }
+      50%       { transform: translateX(100px); }
+    }
+    @keyframes slOscRight {
+      0%, 100% { transform: translateX(0); }
+      50%       { transform: translateX(-100px); }
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0;
+      animation: slFadeIn 1s ease 0.1s forwards;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(255 255 255 / 0.06)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
+    }
+
+    .spotlight-wrap {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0;
+      animation: slFadeIn 1.5s ease 0.3s forwards;
+    }
+
+    .sl-left {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      animation: slOscLeft 7s ease-in-out infinite;
+    }
+    .sl-right {
+      position: absolute;
+      top: 0; right: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      animation: slOscRight 7s ease-in-out infinite;
+    }
+
+    /* Left beam trio */
+    .sl-b1 {
+      position: absolute; top: 0; left: 0;
+      width: 560px; height: 1380px;
+      transform: translateY(-350px) rotate(-45deg);
+      background: radial-gradient(68.54% 68.72% at 55.02% 31.46%,
+        hsla(38, 90%, 92%, .55) 0%,
+        hsla(38, 80%, 82%, .15) 50%,
+        hsla(38, 60%, 65%, 0) 80%);
+    }
+    .sl-b2 {
+      position: absolute; top: 0; left: 0;
+      width: 240px; height: 1380px;
+      transform-origin: top left;
+      transform: rotate(-45deg) translate(5%, -50%);
+      background: radial-gradient(50% 50% at 50% 50%,
+        hsla(38, 90%, 92%, .40) 0%,
+        hsla(38, 80%, 82%, .10) 80%,
+        transparent 100%);
+    }
+    .sl-b3 {
+      position: absolute; top: 0; left: 0;
+      width: 240px; height: 1380px;
+      transform-origin: top left;
+      transform: rotate(-45deg) translate(-180%, -70%);
+      background: radial-gradient(50% 50% at 50% 50%,
+        hsla(38, 90%, 92%, .24) 0%,
+        hsla(38, 70%, 70%, .06) 80%,
+        transparent 100%);
+    }
+
+    /* Right beam trio (mirrored) */
+    .sr-b1 {
+      position: absolute; top: 0; right: 0;
+      width: 560px; height: 1380px;
+      transform: translateY(-350px) rotate(45deg);
+      background: radial-gradient(68.54% 68.72% at 55.02% 31.46%,
+        hsla(38, 90%, 92%, .55) 0%,
+        hsla(38, 80%, 82%, .15) 50%,
+        hsla(38, 60%, 65%, 0) 80%);
+    }
+    .sr-b2 {
+      position: absolute; top: 0; right: 0;
+      width: 240px; height: 1380px;
+      transform-origin: top right;
+      transform: rotate(45deg) translate(-5%, -50%);
+      background: radial-gradient(50% 50% at 50% 50%,
+        hsla(38, 90%, 92%, .40) 0%,
+        hsla(38, 80%, 82%, .10) 80%,
+        transparent 100%);
+    }
+    .sr-b3 {
+      position: absolute; top: 0; right: 0;
+      width: 240px; height: 1380px;
+      transform-origin: top right;
+      transform: rotate(45deg) translate(180%, -70%);
+      background: radial-gradient(50% 50% at 50% 50%,
+        hsla(38, 90%, 92%, .24) 0%,
+        hsla(38, 70%, 70%, .06) 80%,
+        transparent 100%);
+    }
+
+    .hero-brand {
+      font-family: var(--font-heading);
+      font-size: clamp(18px, 2vw, 26px);
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+    .hero-brand::before,
+    .hero-brand::after {
+      content: '';
+      display: block;
+      width: 36px;
+      height: 1px;
+      background: var(--primary);
+      opacity: 0.45;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--primary);
+      opacity: 0.7;
+      margin-bottom: 24px;
+    }
+
+    .hero-content h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(48px, 6vw, 80px);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+    }
+    .hero-content h1 em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .hero-content p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.75;
+      max-width: 540px;
+      margin: 0 auto 44px;
+      font-weight: 400;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      border-radius: var(--radius-btn);
+      cursor: pointer;
+      border: none;
+      transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1), opacity 0.18s ease, background 0.2s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); opacity: 0.88; }
+
+    .btn-gold {
+      background: var(--primary);
+      color: var(--accent);
+    }
+    .btn-gold:hover { background: #dfc49f; }
+
+    .btn-ghost {
+      background: transparent;
+      color: rgba(255,255,255,0.75);
+      border: 1.5px solid rgba(214,187,146,0.35);
+    }
+    .btn-ghost:hover {
+      background: rgba(214,187,146,0.08);
+      color: var(--white);
+      border-color: rgba(214,187,146,0.6);
+    }
+
+    /* ── TRUST BAR ────────────────────────────────── */
+    .trust-bar {
+      background: var(--bg-warm);
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+      padding: 24px 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+    .trust-item svg {
+      width: 18px;
+      height: 18px;
+      color: var(--primary-dark);
+      flex-shrink: 0;
+    }
+
+    /* ── SECTION COMMONS ──────────────────────────── */
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--primary-dark);
+      margin-bottom: 14px;
+    }
+
+    .section-heading {
+      font-family: var(--font-heading);
+      font-size: clamp(30px, 3.5vw, 46px);
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+    .section-heading em {
+      font-style: italic;
+      color: var(--primary-dark);
+    }
+
+    .section-sub {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 520px;
+    }
+
+    /* ── SERVICES ─────────────────────────────────── */
+    .services-section {
+      padding: 100px 80px;
+      background: var(--bg);
+      scroll-margin-top: 72px;
+    }
+
+    .services-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .services-header .section-sub { margin: 0 auto; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .service-card {
+      background: var(--bg-warm);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-card);
+      padding: 36px 32px;
+      transition: transform 0.25s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(61,43,31,0.1), 0 2px 8px rgba(61,43,31,0.06);
+      border-color: var(--border);
+    }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--primary);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+    .service-icon svg {
+      width: 22px;
+      height: 22px;
+      color: var(--accent);
+    }
+
+    .service-card h3 {
+      font-family: var(--font-heading);
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    .service-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ── BEFORE & AFTER ──────────────────────────── */
+    .ba-section {
+      padding: 100px 0 80px;
+      background: var(--bg-warm);
+      scroll-margin-top: 72px;
+      overflow: hidden;
+    }
+    .ba-header {
+      text-align: center;
+      padding: 0 40px 56px;
+    }
+    .ba-header .section-sub {
+      margin: 0 auto;
+    }
+    .ba-track {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      padding: 8px 80px 32px;
+      scrollbar-width: none;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      cursor: grab;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .ba-track::-webkit-scrollbar { display: none; }
+    .ba-track.dragging { cursor: grabbing; }
+    .ba-card {
+      flex-shrink: 0;
+      scroll-snap-align: start;
+      border-radius: 10px;
+      overflow: hidden;
+      height: 420px;
+      position: relative;
+      box-shadow: 0 4px 18px rgba(61,43,31,0.13), 0 1px 4px rgba(61,43,31,0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .ba-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(61,43,31,0.18), 0 2px 6px rgba(61,43,31,0.1); }
+    .ba-card img {
+      height: 100%;
+      width: auto;
+      display: block;
+      pointer-events: none;
+      -webkit-user-drag: none;
+      border-radius: 10px;
+    }
+    .ba-hint {
+      text-align: center;
+      padding: 0 40px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary-dark);
+      opacity: 0.55;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    /* Lightbox */
+    .ba-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.28s ease;
+    }
+    .ba-lightbox.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .ba-lb-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(25, 12, 6, 0.78);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .ba-lb-inner {
+      position: relative;
+      z-index: 1;
+      transform: scale(0.88);
+      transition: transform 0.3s cubic-bezier(0.34, 1.4, 0.64, 1);
+      max-width: 92vw;
+      max-height: 90vh;
+    }
+    .ba-lightbox.open .ba-lb-inner { transform: scale(1); }
+    .ba-lb-inner img {
+      display: block;
+      max-width: 92vw;
+      max-height: 86vh;
+      border-radius: 12px;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.65);
+    }
+    .ba-lb-close {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      width: 34px;
+      height: 34px;
+      background: var(--accent);
+      color: var(--primary);
+      border: none;
+      border-radius: 50%;
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .ba-lb-close:hover { background: var(--accent-light); transform: scale(1.1); }
+    @media (max-width: 768px) {
+      .ba-section { padding: 72px 0 48px; }
+      .ba-track { padding: 8px 24px 28px; gap: 10px; }
+      .ba-card { height: 280px; }
+    }
+
+    /* ── PRICING ──────────────────────────────────── */
+    .pricing-section {
+      padding: 100px 80px;
+      background: var(--accent);
+      position: relative;
+      overflow: hidden;
+      scroll-margin-top: 72px;
+    }
+    .pricing-section::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 600px; height: 600px;
+      background: radial-gradient(ellipse, rgba(214,187,146,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .pricing-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .pricing-header .section-label { color: var(--primary); opacity: 0.7; }
+    .pricing-header .section-heading { color: var(--white); }
+    .pricing-header .section-sub { color: rgba(255,255,255,0.5); margin: 0 auto; }
+
+    .pricing-cols {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 14px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .pricing-col {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(214,187,146,0.15);
+      border-radius: var(--radius-card);
+      padding: 28px 20px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      transition:
+        transform 0.22s cubic-bezier(0.25,0.46,0.45,0.94),
+        box-shadow 0.22s ease,
+        background 0.22s ease,
+        border-color 0.22s ease;
+    }
+    .pricing-col:hover {
+      transform: translateY(-5px);
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(214,187,146,0.5);
+      box-shadow:
+        0 0 0 1px rgba(214,187,146,0.2),
+        0 8px 32px rgba(214,187,146,0.18),
+        0 2px 8px rgba(214,187,146,0.1);
+    }
+    .pricing-col:active { transform: translateY(-2px); }
+
+    .pricing-col-type {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--primary);
+      opacity: 0.7;
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+
+    .pricing-col-price {
+      font-family: var(--font-heading);
+      font-size: 42px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .pricing-col-flat {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 20px;
+    }
+
+    .pricing-col-divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(214,187,146,0.12);
+      margin-bottom: 18px;
+    }
+
+    .pricing-col-examples {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      width: 100%;
+      flex: 1;
+    }
+    .pricing-col-examples::before {
+      content: 'Examples include:';
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary);
+      opacity: 0.5;
+      margin-bottom: 6px;
+    }
+    .pricing-col-examples li {
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.4;
+    }
+    .pricing-note {
+      text-align: center;
+      margin-top: 44px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.38);
+      line-height: 1.7;
+    }
+    .pricing-note strong {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .pricing-col-cta {
+      margin-top: 22px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--primary);
+      opacity: 0.6;
+      transition: opacity 0.2s ease;
+    }
+    .pricing-col:hover .pricing-col-cta { opacity: 1; }
+
+    .pricing-note {
+      text-align: center;
+      margin-top: 36px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.3);
+    }
+    .pricing-note a {
+      color: var(--primary);
+      opacity: 0.8;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* ── WHY OAKLINE ──────────────────────────────── */
+    .why-section {
+      padding: 100px 80px;
+      background: var(--bg-warm);
+    }
+
+    .why-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .why-header .section-sub { margin: 0 auto; }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .why-card {
+      background: var(--bg);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-card);
+      padding: 36px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: transform 0.25s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.25s ease;
+    }
+    .why-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(61,43,31,0.09), 0 2px 8px rgba(61,43,31,0.05);
+    }
+
+    .why-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(214,187,146,0.2);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .why-icon svg {
+      width: 20px;
+      height: 20px;
+      color: var(--primary-dark);
+    }
+
+    .why-card h3 {
+      font-family: var(--font-heading);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+
+    .why-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    /* ── REVIEWS (MARQUEE) ────────────────────────── */
+    @keyframes tm-marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-1264px); }
+    }
+
+    .reviews-section {
+      padding: 100px 0;
+      background: var(--accent);
+      position: relative;
+      overflow: hidden;
+    }
+    .reviews-section::before {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 500px; height: 500px;
+      background: radial-gradient(ellipse, rgba(214,187,146,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .reviews-header {
+      text-align: center;
+      padding: 0 80px;
+      margin-bottom: 56px;
+    }
+    .reviews-header .section-label { color: var(--primary); opacity: 0.7; }
+    .reviews-header .section-heading { color: var(--white); }
+    .reviews-desc {
+      font-size: 15px;
+      color: rgba(255,255,255,0.45);
+      margin-top: 12px;
+    }
+
+    .marquee-wrapper {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      padding: 8px 0 12px;
+    }
+    .marquee-track {
+      display: inline-flex;
+      gap: 16px;
+      width: max-content;
+      animation: tm-marquee 38s linear infinite;
+      will-change: transform;
+    }
+    .marquee-wrapper:hover .marquee-track {
+      animation-play-state: paused;
+    }
+
+    .tm-card {
+      flex-shrink: 0;
+      width: 300px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+      border: 1px solid rgba(214,187,146,0.18);
+      border-radius: var(--radius-card);
+      padding: 24px 24px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: background 0.25s ease, border-color 0.25s ease;
+    }
+    .tm-card:hover {
+      background: linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+      border-color: rgba(214,187,146,0.36);
+    }
+    .tm-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary);
+      letter-spacing: -0.01em;
+    }
+    .tm-tag {
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.04em;
+      margin-top: 2px;
+    }
+    .tm-stars {
+      display: flex;
+      gap: 3px;
+    }
+    .tm-stars svg {
+      width: 13px;
+      height: 13px;
+      fill: var(--primary);
+      color: var(--primary);
+    }
+    .tm-quote {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.72);
+    }
+
+    .marquee-fade {
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 160px;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .marquee-fade-left  { left: 0;  background: linear-gradient(to right, var(--accent), transparent); }
+    .marquee-fade-right { right: 0; background: linear-gradient(to left,  var(--accent), transparent); }
+
+    /* ── BOOKING FORM ─────────────────────────────── */
+    .booking-section {
+      padding: 100px 80px;
+      background: var(--bg);
+      scroll-margin-top: 72px;
+    }
+
+    .booking-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 80px;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .booking-info { display: flex; flex-direction: column; }
+    .booking-info .section-heading { margin-bottom: 20px; }
+    .booking-info .section-sub { margin-bottom: 40px; }
+
+    .contact-items {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .contact-item-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--bg-warm);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-item-icon svg {
+      width: 18px;
+      height: 18px;
+      color: var(--primary-dark);
+    }
+    .contact-item-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 2px;
+    }
+    .contact-item-value {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .booking-form-card {
+      background: var(--bg-warm);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-card);
+      padding: 48px 44px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .form-group.no-margin { margin-bottom: 0; }
+
+    label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    input, select, textarea {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--text);
+      background: var(--bg);
+      border: 1.5px solid var(--border-light);
+      border-radius: 6px;
+      padding: 12px 16px;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    input::placeholder, textarea::placeholder { color: var(--text-light); }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--primary-dark);
+      box-shadow: 0 0 0 3px rgba(196,164,124,0.18);
+    }
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%233D2B1F' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+    textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
+
+    .btn-submit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      margin-top: 24px;
+      padding: 16px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--accent);
+      background: var(--primary);
+      border: none;
+      border-radius: var(--radius-btn);
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.18s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .btn-submit:hover { background: #dfc49f; transform: translateY(-1px); }
+    .btn-submit:active { transform: translateY(0); }
+    .btn-submit svg { width: 18px; height: 18px; }
+
+    .form-note {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-light);
+      margin-top: 14px;
+    }
+
+    /* ── FOOTER ───────────────────────────────────── */
+    footer {
+      background: var(--accent);
+      border-top: 1px solid rgba(214,187,146,0.15);
+      padding: 64px 80px 40px;
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 56px;
+    }
+
+    .footer-brand img {
+      height: 52px;
+      width: auto;
+      margin-bottom: 20px;
+      border-radius: 6px;
+    }
+    .footer-tagline {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 15px;
+      color: var(--primary);
+      opacity: 0.7;
+      margin-bottom: 12px;
+    }
+    .footer-brand p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.7;
+      max-width: 260px;
+    }
+
+    .footer-col h4 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--primary);
+      opacity: 0.6;
+      margin-bottom: 20px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-col ul li a {
+      font-size: 14px;
+      color: rgba(255,255,255,0.45);
+      transition: color 0.2s ease;
+    }
+    .footer-col ul li a:hover { color: var(--primary); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
+    .footer-legal { display: flex; gap: 24px; }
+    .footer-legal a {
+      font-size: 12px;
+      color: rgba(255,255,255,0.25);
+      transition: color 0.2s ease;
+    }
+    .footer-legal a:hover { color: rgba(255,255,255,0.5); }
+
+    /* ── RESPONSIVE ───────────────────────────────── */
+    @media (max-width: 1200px) {
+      .pricing-cols { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .why-grid { grid-template-columns: 1fr 1fr; }
+      .booking-inner { grid-template-columns: 1fr; gap: 48px; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      header { padding: 0 20px; }
+      nav .nav-link { display: none; }
+
+      .hero { padding: 80px 28px 72px; padding-top: 120px; min-height: auto; }
+      .hero-image { display: none; }
+
+      .trust-bar { padding: 20px 28px; gap: 24px; }
+
+      .services-section { padding: 72px 28px; }
+      .services-grid { grid-template-columns: 1fr; }
+
+      .pricing-section { padding: 72px 28px; }
+      .pricing-cols { grid-template-columns: repeat(2, 1fr); }
+
+      .why-section { padding: 72px 28px; }
+      .why-grid { grid-template-columns: 1fr 1fr; }
+
+      .reviews-section { padding: 72px 28px; }
+
+      .booking-section { padding: 72px 28px; }
+      .booking-form-card { padding: 32px 24px; }
+      .form-row { grid-template-columns: 1fr; }
+
+      footer { padding: 48px 28px 32px; }
+      .footer-inner { grid-template-columns: 1fr; gap: 36px; }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-logo">
+      <img src="band_assets/Oakline Auto Detailing Logo.jpg" alt="Oakline Auto Detailing" />
+    </div>
+    <nav>
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#pricing" class="nav-link">Pricing</a>
+      <a href="#about" class="nav-link">Why Oakline</a>
+      <a href="#reviews" class="nav-link">Testimonials</a>
+      <a href="#booking" class="nav-cta">Book Now</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <!-- Grid texture -->
+    <div class="hero-grid"></div>
+
+    <!-- Animated spotlight beams -->
+    <div class="spotlight-wrap">
+      <div class="sl-left">
+        <div class="sl-b1"></div>
+        <div class="sl-b2"></div>
+        <div class="sl-b3"></div>
+      </div>
+      <div class="sl-right">
+        <div class="sr-b1"></div>
+        <div class="sr-b2"></div>
+        <div class="sr-b3"></div>
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <p class="hero-brand">Oakline Auto Detailing</p>
+      <p class="hero-eyebrow">Mobile Interior Detailing — Brookings, SD</p>
+      <h1>Clean Cars.<br><em>Clear Standards.</em></h1>
+      <p>Professional interior detailing brought straight to your door. No shop, no hassle — just a spotless cabin and the convenience of never leaving home.</p>
+      <div class="btn-group">
+        <a href="#booking"><button class="btn btn-gold">Book a Detail</button></a>
+        <a href="#pricing"><button class="btn btn-ghost">View Pricing</button></a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      Mobile — We Come to You
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      Interior Detailing Specialists
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      Flat-Rate, No Surprise Pricing
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      Brookings, SD &amp; Surrounding Areas
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services-section" id="services">
+    <div class="services-header">
+      <p class="section-label">What's Included</p>
+      <h2 class="section-heading">A Complete<br><em>Interior Detail</em></h2>
+      <p class="section-sub">Every booking is a full interior detail — no upsells, no add-on charges. Here's exactly what Caeden takes care of on every single job.</p>
+    </div>
+    <div class="services-grid">
+
+      <!-- Vacuum icon -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <!-- floor nozzle/head -->
+            <rect x="2" y="16" width="8" height="4" rx="1"/>
+            <!-- flexible hose -->
+            <path d="M10 18L18 9"/>
+            <!-- vacuum motor body -->
+            <circle cx="19" cy="7" r="3"/>
+            <!-- suction direction hint -->
+            <path d="M5 16v-2"/>
+          </svg>
+        </div>
+        <h3>Full Vacuum & Extraction</h3>
+        <p>Every seat, floor mat, carpet, and trunk vacuumed thoroughly — including tight crevices around consoles, seat rails, and door pockets that most vacuums miss.</p>
+      </div>
+
+      <!-- Steam icon: three rising wavy wisps -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 20C7 18 9 16 8 14C7 12 9 10 8 8"/>
+            <path d="M12 20C11 18 13 16 12 14C11 12 13 10 12 8"/>
+            <path d="M16 20C15 18 17 16 16 14C15 12 17 10 16 8"/>
+          </svg>
+        </div>
+        <h3>Steam Sanitization</h3>
+        <p>High-temp steam cleaning kills bacteria, eliminates odors, and lifts embedded grime from upholstery and fabric surfaces without harsh chemicals.</p>
+      </div>
+
+      <!-- Spray bottle icon -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <!-- bottle body -->
+            <path d="M8 22V12l2-4h5v14H8z"/>
+            <!-- pump arm + nozzle -->
+            <path d="M13 8V5h3v4"/>
+            <!-- nozzle tip to spray -->
+            <line x1="16" y1="5" x2="20" y2="4"/>
+            <!-- spray mist dots -->
+            <path d="M20 3v-.5M21 5l.5-.5M21 7l.5.5"/>
+          </svg>
+        </div>
+        <h3>Dashboard & Surface Wipe-Down</h3>
+        <p>Dashboard, center console, door panels, cup holders, vents, and all hard surfaces cleaned and conditioned to restore a like-new look and feel.</p>
+      </div>
+
+      <!-- Detailing brush icon -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <!-- handle -->
+            <line x1="4" y1="20" x2="14" y2="10"/>
+            <!-- ferrule connecting handle to head -->
+            <path d="M14 10l2-2"/>
+            <!-- brush head -->
+            <path d="M16 8l3-3a1.5 1.5 0 012.12 0l.88.88a1.5 1.5 0 010 2.12L19 11l-3-3z"/>
+            <!-- splayed bristles at tip -->
+            <path d="M19 11l-2 3M17 12l-3 2"/>
+          </svg>
+        </div>
+        <h3>Upholstery & Stain Treatment</h3>
+        <p>Fabric seats, headliners, visors, and carpets treated for stains and soiling. Leather surfaces cleaned and conditioned to prevent cracking and fading.</p>
+      </div>
+
+      <!-- Wiper blade icon -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <!-- wiper arm -->
+            <line x1="3" y1="20" x2="21" y2="5"/>
+            <!-- sweep arc showing wiper path -->
+            <path d="M3 20Q13 3 21 5"/>
+            <!-- pivot point -->
+            <circle cx="3" cy="20" r="2"/>
+          </svg>
+        </div>
+        <h3>Interior Glass Cleaning</h3>
+        <p>Windshield, rear window, and all interior glass cleaned streak-free — the overlooked detail that makes a huge difference in how clean a car actually feels.</p>
+      </div>
+
+      <!-- Monocle icon -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <!-- monocle lens frame -->
+            <circle cx="10" cy="12" r="7"/>
+            <!-- chain extending right -->
+            <line x1="17" y1="12" x2="22" y2="12"/>
+            <!-- clasp bar at chain end -->
+            <line x1="22" y1="9" x2="22" y2="15"/>
+          </svg>
+        </div>
+        <h3>Final Walkthrough</h3>
+        <p>Before wrapping up, every surface is inspected and touched up. If something isn't right, it gets addressed on the spot — no job is finished until it looks perfect.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BEFORE & AFTER -->
+  <section class="ba-section" id="before-after">
+    <div class="ba-header">
+      <p class="section-label">Real Results</p>
+      <h2 class="section-heading">Before &amp; <em>After</em></h2>
+      <p class="section-sub">Drag or scroll to see what a detail from Oakline actually looks like.</p>
+    </div>
+    <div class="ba-track" id="baTrack">
+      <div class="ba-card" data-src="/before_after/IMG_0265.JPEG"><img src="/before_after/IMG_0265.JPEG" alt="Before and after detail"></div>
+      <div class="ba-card" data-src="/before_after/IMG_0293.JPEG"><img src="/before_after/IMG_0293.JPEG" alt="Before and after detail"></div>
+      <div class="ba-card" data-src="/before_after/IMG_0298.JPEG"><img src="/before_after/IMG_0298.JPEG" alt="Before and after detail"></div>
+      <div class="ba-card" data-src="/before_after/IMG_0318.JPEG"><img src="/before_after/IMG_0318.JPEG" alt="Before and after detail"></div>
+      <div class="ba-card" data-src="/before_after/IMG_0386.JPEG"><img src="/before_after/IMG_0386.JPEG" alt="Before and after detail"></div>
+      <div class="ba-card" data-src="/before_after/IMG_0739.JPEG"><img src="/before_after/IMG_0739.JPEG" alt="Before and after detail"></div>
+      <div class="ba-card" data-src="/before_after/IMG_0745.JPEG"><img src="/before_after/IMG_0745.JPEG" alt="Before and after detail"></div>
+      <div class="ba-card" data-src="/before_after/IMG_0751.JPEG"><img src="/before_after/IMG_0751.JPEG" alt="Before and after detail"></div>
+      <div class="ba-card" data-src="/before_after/IMG_0757.JPEG"><img src="/before_after/IMG_0757.JPEG" alt="Before and after detail"></div>
+      <div class="ba-card" data-src="/before_after/IMG_0761.JPEG"><img src="/before_after/IMG_0761.JPEG" alt="Before and after detail"></div>
+      <div class="ba-card" data-src="/before_after/IMG_0764.JPEG"><img src="/before_after/IMG_0764.JPEG" alt="Before and after detail"></div>
+      <div class="ba-card" data-src="/before_after/IMG_0864.JPEG"><img src="/before_after/IMG_0864.JPEG" alt="Before and after detail"></div>
+      <div class="ba-card" data-src="/before_after/IMG_0865.JPEG"><img src="/before_after/IMG_0865.JPEG" alt="Before and after detail"></div>
+      <div class="ba-card" data-src="/before_after/IMG_0869.JPEG"><img src="/before_after/IMG_0869.JPEG" alt="Before and after detail"></div>
+    </div>
+    <p class="ba-hint">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M15 6l6 6-6 6"/><path d="M9 18l-6-6 6-6"/></svg>
+      Drag to browse &nbsp;·&nbsp; Click any photo to enlarge
+    </p>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="ba-lightbox" id="baLightbox" aria-hidden="true" role="dialog">
+    <div class="ba-lb-backdrop" id="baLbBackdrop"></div>
+    <div class="ba-lb-inner">
+      <img id="baLbImg" src="" alt="Before and after detail enlarged">
+      <button class="ba-lb-close" id="baLbClose" aria-label="Close photo">&#x2715;</button>
+    </div>
+  </div>
+
+  <!-- PRICING -->
+  <section class="pricing-section" id="pricing">
+    <div class="pricing-header">
+      <p class="section-label">Transparent Pricing</p>
+      <h2 class="section-heading">Flat Rate.<br>No Tier Packages.</h2>
+      <p class="section-sub">One price for a complete interior detail — based on the size of your vehicle. No upsells, no surprises.</p>
+    </div>
+
+    <div class="pricing-cols">
+
+      <div class="pricing-col" data-vehicle="sedan" onclick="selectVehicle('sedan')">
+        <p class="pricing-col-type">Sedans</p>
+        <p class="pricing-col-price">$120</p>
+        <p class="pricing-col-flat">Flat Rate</p>
+        <div class="pricing-col-divider"></div>
+        <ul class="pricing-col-examples">
+          <li>Toyota Camry</li>
+          <li>Honda Accord</li>
+          <li>Honda Civic</li>
+          <li>Nissan Altima</li>
+          <li>Dodge Charger</li>
+        </ul>
+        <p class="pricing-col-cta">Book this →</p>
+      </div>
+
+      <div class="pricing-col" data-vehicle="compact-pickup" onclick="selectVehicle('compact-pickup')">
+        <p class="pricing-col-type">Compact Pickups</p>
+        <p class="pricing-col-price">$120</p>
+        <p class="pricing-col-flat">Flat Rate</p>
+        <div class="pricing-col-divider"></div>
+        <ul class="pricing-col-examples">
+          <li>Toyota Tacoma</li>
+          <li>Ford Ranger</li>
+          <li>Chevy Colorado</li>
+          <li>GMC Canyon</li>
+          <li>Jeep Gladiator</li>
+        </ul>
+        <p class="pricing-col-cta">Book this →</p>
+      </div>
+
+      <div class="pricing-col" data-vehicle="fullsize-pickup" onclick="selectVehicle('fullsize-pickup')">
+        <p class="pricing-col-type">Full-Size Pickups</p>
+        <p class="pricing-col-price">$170</p>
+        <p class="pricing-col-flat">Flat Rate</p>
+        <div class="pricing-col-divider"></div>
+        <ul class="pricing-col-examples">
+          <li>Ford F-150</li>
+          <li>Chevy Silverado</li>
+          <li>GMC Sierra</li>
+          <li>Ram 1500</li>
+          <li>Toyota Tundra</li>
+        </ul>
+        <p class="pricing-col-cta">Book this →</p>
+      </div>
+
+      <div class="pricing-col" data-vehicle="midsize-suv" onclick="selectVehicle('midsize-suv')">
+        <p class="pricing-col-type">Mid-Size SUVs</p>
+        <p class="pricing-col-price">$170</p>
+        <p class="pricing-col-flat">Flat Rate</p>
+        <div class="pricing-col-divider"></div>
+        <ul class="pricing-col-examples">
+          <li>Ford Explorer</li>
+          <li>Toyota RAV4</li>
+          <li>Jeep Grand Cherokee</li>
+          <li>Honda CR-V</li>
+          <li>Chevy Equinox</li>
+        </ul>
+        <p class="pricing-col-cta">Book this →</p>
+      </div>
+
+      <div class="pricing-col" data-vehicle="fullsize-suv" onclick="selectVehicle('fullsize-suv')">
+        <p class="pricing-col-type">Full-Size SUVs</p>
+        <p class="pricing-col-price">$220</p>
+        <p class="pricing-col-flat">Flat Rate</p>
+        <div class="pricing-col-divider"></div>
+        <ul class="pricing-col-examples">
+          <li>Chevy Tahoe</li>
+          <li>GMC Yukon</li>
+          <li>Ford Expedition</li>
+          <li>Chevy Suburban</li>
+          <li>Cadillac Escalade</li>
+        </ul>
+        <p class="pricing-col-cta">Book this →</p>
+      </div>
+
+      <div class="pricing-col" data-vehicle="van" onclick="selectVehicle('van')">
+        <p class="pricing-col-type">Vans</p>
+        <p class="pricing-col-price">$220</p>
+        <p class="pricing-col-flat">Flat Rate</p>
+        <div class="pricing-col-divider"></div>
+        <ul class="pricing-col-examples">
+          <li>Chrysler Pacifica</li>
+          <li>Toyota Sienna</li>
+          <li>Honda Odyssey</li>
+          <li>Dodge Grand Caravan</li>
+          <li>Ford Transit</li>
+        </ul>
+        <p class="pricing-col-cta">Book this →</p>
+      </div>
+
+    </div>
+
+    <p class="pricing-note">These are <strong>vehicle classifications</strong>, not a complete list — we detail any make or model.<br>Not sure where your vehicle falls? <a href="#booking" style="color:var(--primary);text-decoration:underline;text-underline-offset:3px;">Book a detail</a> and we'll sort it out.</p>
+  </section>
+
+  <!-- WHY OAKLINE -->
+  <section class="why-section" id="about">
+    <div class="why-header">
+      <p class="section-label">Why Oakline</p>
+      <h2 class="section-heading">Quality You Can<br><em>See and Feel</em></h2>
+      <p class="section-sub">Oakline isn't a franchise pushing volume — it's a small team that treats every car like it's their own. Here's what that means for you.</p>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3>A Personal Touch on Every Job</h3>
+        <p>You're not booking a faceless company. You're booking a team that shows up, takes pride in the work, and treats your car like it's their own — every single time.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 00-8 8c0 5.25 8 14 8 14s8-8.75 8-14a8 8 0 00-8-8z"/></svg>
+        </div>
+        <h3>We Come Right to Your Door</h3>
+        <p>No driving across town. No waiting rooms. We come to your home, workplace, or wherever is most convenient for you — on your schedule.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>No Job Too Far Gone</h3>
+        <p>Just bought a used car? Lived in it for years? Kids and pets? We've seen it all — and have the tools and technique to restore it to looking factory clean.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        </div>
+        <h3>Done Right, Every Time</h3>
+        <p>The job isn't finished until the car looks exactly how it should. No rushing, no skipping steps — just thorough, careful work and a result you'll actually notice.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews-section" id="reviews">
+    <div class="reviews-header">
+      <p class="section-label">Customer Reviews</p>
+      <h2 class="section-heading">What Clients Are Saying</h2>
+      <p class="reviews-desc">Hear from real car owners who've experienced the Oakline difference.</p>
+    </div>
+
+    <div class="marquee-wrapper">
+      <div class="marquee-track">
+
+        <!-- ── Set 1 ── -->
+        <div class="tm-card">
+          <div>
+            <p class="tm-name">Melissa Johnson</p>
+            <p class="tm-tag">Verified Customer</p>
+          </div>
+          <div class="tm-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="tm-quote">"Caeden did an excellent job! We just purchased the car from a third party and it needed lots of love. Caeden was able to get the stains off the visors and the ceiling. The carpet has never looked so clean. I also appreciated him coming to my house to clean it."</p>
+        </div>
+
+        <div class="tm-card">
+          <div>
+            <p class="tm-name">Dennis Gilbertson</p>
+            <p class="tm-tag">Verified Customer</p>
+          </div>
+          <div class="tm-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="tm-quote">"I have a 5 year old vehicle that was only vacuumed over the years. Caeden came over cleaned it in 3 hours looks like it came from the factory. Awesome job looks great."</p>
+        </div>
+
+        <div class="tm-card">
+          <div>
+            <p class="tm-name">Colton Torkenson</p>
+            <p class="tm-tag">Verified Customer</p>
+          </div>
+          <div class="tm-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="tm-quote">"My car hasn't been this clean since the day I bought it! Having Caeden come to us was so convenient. He was on time, courteous, and extremely thorough. Highly recommend!"</p>
+        </div>
+
+        <div class="tm-card">
+          <div>
+            <p class="tm-name">Brittanie Nicole</p>
+            <p class="tm-tag">Verified Customer</p>
+          </div>
+          <div class="tm-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="tm-quote">"This was a surprise for my husband's birthday and Caeden did an outstanding job. He was on time, super efficient and the car looks brand new! We will definitely use again for any detailing needs."</p>
+        </div>
+
+        <!-- ── Set 2 (identical — for seamless loop) ── -->
+        <div class="tm-card">
+          <div>
+            <p class="tm-name">Melissa Johnson</p>
+            <p class="tm-tag">Verified Customer</p>
+          </div>
+          <div class="tm-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="tm-quote">"Caeden did an excellent job! We just purchased the car from a third party and it needed lots of love. Caeden was able to get the stains off the visors and the ceiling. The carpet has never looked so clean. I also appreciated him coming to my house to clean it."</p>
+        </div>
+
+        <div class="tm-card">
+          <div>
+            <p class="tm-name">Dennis Gilbertson</p>
+            <p class="tm-tag">Verified Customer</p>
+          </div>
+          <div class="tm-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="tm-quote">"I have a 5 year old vehicle that was only vacuumed over the years. Caeden came over cleaned it in 3 hours looks like it came from the factory. Awesome job looks great."</p>
+        </div>
+
+        <div class="tm-card">
+          <div>
+            <p class="tm-name">Colton Torkenson</p>
+            <p class="tm-tag">Verified Customer</p>
+          </div>
+          <div class="tm-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="tm-quote">"My car hasn't been this clean since the day I bought it! Having Caeden come to us was so convenient. He was on time, courteous, and extremely thorough. Highly recommend!"</p>
+        </div>
+
+        <div class="tm-card">
+          <div>
+            <p class="tm-name">Brittanie Nicole</p>
+            <p class="tm-tag">Verified Customer</p>
+          </div>
+          <div class="tm-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="tm-quote">"This was a surprise for my husband's birthday and Caeden did an outstanding job. He was on time, super efficient and the car looks brand new! We will definitely use again for any detailing needs."</p>
+        </div>
+
+      </div><!-- end .marquee-track -->
+
+      <div class="marquee-fade marquee-fade-left"></div>
+      <div class="marquee-fade marquee-fade-right"></div>
+    </div>
+  </section>
+
+  <!-- BOOKING FORM -->
+  <section class="booking-section" id="booking">
+    <div class="booking-inner">
+
+      <div class="booking-info">
+        <p class="section-label">Request a Booking</p>
+        <h2 class="section-heading">Let's Get Your<br>Car <em>Oakline Clean</em></h2>
+        <p class="section-sub">Fill out the form and we'll reach out within 24 hours to confirm your appointment. We come to you — just let us know where and when works best.</p>
+
+        <div class="contact-items">
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 1.18 2 2 0 014 .01h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+            </div>
+            <div>
+              <p class="contact-item-label">Phone</p>
+              <p class="contact-item-value">(701) 730-7960</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <p class="contact-item-label">Email</p>
+              <p class="contact-item-value">oaklineautodetailing@outlook.com</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 00-8 8c0 5.25 8 14 8 14s8-8.75 8-14a8 8 0 00-8-8z"/></svg>
+            </div>
+            <div>
+              <p class="contact-item-label">Service Area</p>
+              <p class="contact-item-value">Brookings, SD &amp; Surrounding Areas</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="booking-form-card">
+        <form id="bookingForm" novalidate>
+
+          <div class="form-row">
+            <div class="form-group no-margin">
+              <label for="first-name">First Name</label>
+              <input type="text" id="first-name" name="first_name" placeholder="John" required />
+            </div>
+            <div class="form-group no-margin">
+              <label for="last-name">Last Name</label>
+              <input type="text" id="last-name" name="last_name" placeholder="Smith" required />
+            </div>
+          </div>
+
+          <div class="form-row" style="margin-top: 16px;">
+            <div class="form-group no-margin">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="john@example.com" required />
+            </div>
+            <div class="form-group no-margin">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" />
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-top: 16px;">
+            <label for="vehicle">Vehicle (Year, Make, Model)</label>
+            <input type="text" id="vehicle" name="vehicle" placeholder="e.g. 2019 Ford F-150" required />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group no-margin">
+              <label for="service">Vehicle Type</label>
+              <select id="service" name="vehicle_type" required>
+                <option value="" disabled selected>Select vehicle type…</option>
+                <option value="sedan">Sedan — $120</option>
+                <option value="compact-pickup">Compact Pickup — $120</option>
+                <option value="fullsize-pickup">Full-Size Pickup — $170</option>
+                <option value="midsize-suv">Mid-Size SUV — $170</option>
+                <option value="fullsize-suv">Full-Size SUV — $220</option>
+                <option value="van">Van — $220</option>
+                <option value="unsure">Not Sure</option>
+              </select>
+            </div>
+            <div class="form-group no-margin">
+              <label for="date">Preferred Date</label>
+              <input type="date" id="date" name="preferred_date" />
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-top: 16px;">
+            <label for="address">Service Address</label>
+            <input type="text" id="address" name="address" placeholder="Where should we come to?" />
+          </div>
+
+          <div class="form-group">
+            <label for="notes">Additional Notes</label>
+            <textarea id="notes" name="notes" placeholder="Pet hair, heavy staining, specific concerns, or anything else we should know about your vehicle…"></textarea>
+          </div>
+
+          <div id="formError" style="display:none; margin-top:12px; padding:12px 16px; border-radius:6px; background:rgba(220,53,69,0.08); border:1px solid rgba(220,53,69,0.25); color:#b02a37; font-size:13px; font-family:var(--font-body);">
+            Something went wrong — please try again or call us at (701) 730-7960.
+          </div>
+
+          <div class="g-recaptcha" data-sitekey="6LftUpAsAAAAAGrYLXcVARInvkfllBsuMHn-q1LK" data-theme="dark" style="margin-bottom:16px;"></div>
+
+          <button type="submit" class="btn-submit" id="submitBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Send Booking Request
+          </button>
+          <p class="form-note">We'll respond within 24 hours to confirm your appointment.</p>
+
+        </form>
+
+        <!-- Success state (hidden until sent) -->
+        <div id="formSuccess" style="display:none; text-align:center; padding:48px 24px;">
+          <div style="width:56px;height:56px;background:rgba(196,164,124,0.15);border:1.5px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary-dark)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h3 style="font-family:var(--font-heading);font-size:22px;font-weight:700;color:var(--accent);margin-bottom:10px;">Request Sent!</h3>
+          <p style="font-size:15px;color:var(--text-muted);line-height:1.7;max-width:340px;margin:0 auto;">Thanks — we received your booking request and will be in touch within 24 hours to confirm your appointment.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="band_assets/Oakline Auto Detailing Logo.jpg" alt="Oakline Auto Detailing" />
+        <p class="footer-tagline">"Clean Cars. Clear Standards."</p>
+        <p>Mobile interior detailing for car owners in Brookings, SD and surrounding areas. We come to you.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Full Vacuum &amp; Extraction</a></li>
+          <li><a href="#services">Steam Sanitization</a></li>
+          <li><a href="#services">Surface Wipe-Down</a></li>
+          <li><a href="#services">Upholstery &amp; Stain Treatment</a></li>
+          <li><a href="#services">Interior Glass Cleaning</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:7017307960">(701) 730-7960</a></li>
+          <li><a href="mailto:oaklineautodetailing@outlook.com">oaklineautodetailing@outlook.com</a></li>
+          <li><a href="#pricing">View Pricing</a></li>
+          <li><a href="#booking">Book a Detail</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 Oakline Auto Detailing. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ── EmailJS init ──────────────────────────────── */
+    emailjs.init({ publicKey: 'vBMp9oJAHSzvPKYF0' });
+
+    /* ── Booking form submission ───────────────────── */
+    const bookingForm = document.getElementById('bookingForm');
+    const submitBtn   = document.getElementById('submitBtn');
+    const formSuccess = document.getElementById('formSuccess');
+    const formError   = document.getElementById('formError');
+
+    if (bookingForm) {
+      bookingForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        formError.style.display = 'none';
+
+        // Required-field check
+        if (!bookingForm.checkValidity()) {
+          bookingForm.reportValidity();
+          return;
+        }
+
+        // reCAPTCHA check
+        if (!grecaptcha.getResponse()) {
+          formError.textContent = 'Please confirm you\'re not a robot before submitting.';
+          formError.style.display = 'block';
+          return;
+        }
+
+        // Pull every field value
+        const f = bookingForm;
+        const firstName    = f.querySelector('[name="first_name"]').value.trim();
+        const lastName     = f.querySelector('[name="last_name"]').value.trim();
+        const email        = f.querySelector('[name="email"]').value.trim();
+        const phone        = f.querySelector('[name="phone"]').value.trim()        || 'Not provided';
+        const vehicle      = f.querySelector('[name="vehicle"]').value.trim();
+        const vehicleType  = f.querySelector('[name="vehicle_type"]').value        || 'Not selected';
+        const preferredDate= f.querySelector('[name="preferred_date"]').value      || 'Not specified';
+        const address      = f.querySelector('[name="address"]').value.trim()      || 'Not provided';
+        const notes        = f.querySelector('[name="notes"]').value.trim()        || 'None';
+
+        // Formatted message body that works with any single-body template variable
+        const message = [
+          'BOOKING REQUEST — OAKLINE AUTO DETAILING',
+          '==========================================',
+          '',
+          'NAME:           ' + firstName + ' ' + lastName,
+          'EMAIL:          ' + email,
+          'PHONE:          ' + phone,
+          '',
+          'VEHICLE:        ' + vehicle,
+          'VEHICLE TYPE:   ' + vehicleType,
+          'PREFERRED DATE: ' + preferredDate,
+          'SERVICE ADDRESS:' + address,
+          '',
+          'ADDITIONAL NOTES:',
+          notes,
+        ].join('\n');
+
+        // Loading state
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation:spin .8s linear infinite"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0"/></svg>
+          Sending…`;
+
+        emailjs.send('oakline_bookings', 'template_jth4zep', {
+          // Individual fields (match these to your template variables)
+          first_name:     firstName,
+          last_name:      lastName,
+          from_name:      firstName + ' ' + lastName,
+          reply_to:       email,
+          email:          email,
+          phone:          phone,
+          vehicle:        vehicle,
+          vehicle_type:   vehicleType,
+          preferred_date: preferredDate,
+          address:        address,
+          notes:          notes,
+          // Catch-all formatted body in case template uses {{message}}
+          message:        message,
+        })
+          .then(function () {
+            bookingForm.style.display = 'none';
+            formSuccess.style.display = 'block';
+          })
+          .catch(function (err) {
+            console.error('EmailJS error:', err);
+            formError.textContent = 'Something went wrong — please try again or call us at (701) 730-7960.';
+            formError.style.display = 'block';
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = `
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Send Booking Request`;
+            grecaptcha.reset();
+          });
+      });
+    }
+
+    /* ── Pricing click-to-fill ─────────────────────── */
+    function selectVehicle(value) {
+      const select = document.getElementById('service');
+      if (select) select.value = value;
+      document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+    }
+
+  </script>
+
+  <style>
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+
+  <!-- Before & After Gallery -->
+  <script>
+    (function () {
+      var track = document.getElementById('baTrack');
+      if (!track) return;
+
+      /* ── Drag-to-scroll ─────────────────────────── */
+      var isDragging = false;
+      var startX = 0;
+      var scrollLeft = 0;
+      var dragDist = 0;
+
+      track.addEventListener('mousedown', function (e) {
+        isDragging = true;
+        startX = e.clientX;
+        scrollLeft = track.scrollLeft;
+        dragDist = 0;
+        track.classList.add('dragging');
+      });
+
+      window.addEventListener('mousemove', function (e) {
+        if (!isDragging) return;
+        dragDist = Math.abs(e.clientX - startX);
+        track.scrollLeft = scrollLeft - (e.clientX - startX);
+      });
+
+      window.addEventListener('mouseup', function () {
+        isDragging = false;
+        track.classList.remove('dragging');
+      });
+
+      track.addEventListener('touchstart', function (e) {
+        startX = e.touches[0].clientX;
+        scrollLeft = track.scrollLeft;
+        dragDist = 0;
+      }, { passive: true });
+
+      track.addEventListener('touchmove', function (e) {
+        dragDist = Math.abs(e.touches[0].clientX - startX);
+        track.scrollLeft = scrollLeft - (e.touches[0].clientX - startX);
+      }, { passive: true });
+
+      /* ── Lightbox ──────────────────────────────── */
+      var lightbox = document.getElementById('baLightbox');
+      var lbImg    = document.getElementById('baLbImg');
+      var lbClose  = document.getElementById('baLbClose');
+      var lbBack   = document.getElementById('baLbBackdrop');
+
+      function openLightbox(src) {
+        lbImg.src = src;
+        lightbox.setAttribute('aria-hidden', 'false');
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        setTimeout(function () { lbImg.src = ''; }, 300);
+      }
+
+      /* Only open lightbox on intentional click (not drag) */
+      track.addEventListener('click', function (e) {
+        if (dragDist > 8) return;
+        var card = e.target.closest('.ba-card');
+        if (card) openLightbox(card.dataset.src);
+      });
+
+      lbClose.addEventListener('click', closeLightbox);
+      lbBack.addEventListener('click',  closeLightbox);
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+      });
+    })();
+  </script>
+</body>
+</html>
+</html>
